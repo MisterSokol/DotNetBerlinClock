@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BerlinClock.Classes
 {
 	public class BerlinUhr : IBerlinUhr
 	{
 		private readonly IBerlinUhrPrintStrategy printStrategy;
+
+		private bool[] oneFullMinutesRow = new bool[4];
 
 		public BerlinUhr(IBerlinUhrPrintStrategy printStrategy)
 		{
@@ -20,7 +23,7 @@ namespace BerlinClock.Classes
 
 		public IEnumerable<bool> FiveFullMinutesRow => throw new NotImplementedException();
 
-		public IEnumerable<bool> OneFullMinutesRow => throw new NotImplementedException();
+		public IEnumerable<bool> OneFullMinutesRow => this.oneFullMinutesRow;
 
 		public string Print()
 		{
@@ -30,11 +33,29 @@ namespace BerlinClock.Classes
 		public void SetTime(TimeSpan time)
 		{
 			this.SetSecondDot(time);
+			this.SetOneFullMinutesRow(time);
+		}
+
+		private void SetOneFullMinutesRow(TimeSpan time)
+		{
+			var litSquares = time.Minutes % 5;
+
+			this.LitSquares(this.oneFullMinutesRow, litSquares);
 		}
 
 		private void SetSecondDot(TimeSpan time)
 		{
 			this.SecondDot = time.Seconds % 2 == 0;
+		}
+
+		private void LitSquares(bool[] rows, int litSquares)
+		{
+			var size = rows.Length;
+
+			for (int i = 0; i < size; i++)
+			{
+				rows[i] = i < litSquares;
+			}
 		}
 	}
 }
