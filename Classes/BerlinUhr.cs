@@ -9,6 +9,7 @@ namespace BerlinClock.Classes
 		private readonly IBerlinUhrPrintStrategy printStrategy;
 
 		private bool[] oneFullMinutesRow = new bool[4];
+		private bool[] fiveFullMinutesRow = new bool[11];
 
 		public BerlinUhr(IBerlinUhrPrintStrategy printStrategy)
 		{
@@ -21,7 +22,7 @@ namespace BerlinClock.Classes
 
 		public IEnumerable<bool> OneFullHoursRow => throw new NotImplementedException();
 
-		public IEnumerable<bool> FiveFullMinutesRow => throw new NotImplementedException();
+		public IEnumerable<bool> FiveFullMinutesRow => this.fiveFullMinutesRow;
 
 		public IEnumerable<bool> OneFullMinutesRow => this.oneFullMinutesRow;
 
@@ -34,6 +35,14 @@ namespace BerlinClock.Classes
 		{
 			this.SetSecondDot(time);
 			this.SetOneFullMinutesRow(time);
+			this.SetFiveFullMinutesRow(time);
+		}
+
+		private void SetFiveFullMinutesRow(TimeSpan time)
+		{
+			int litSquares = time.Minutes / 5;
+
+			this.LitSquares(this.fiveFullMinutesRow, litSquares);
 		}
 
 		private void SetOneFullMinutesRow(TimeSpan time)
