@@ -5,8 +5,11 @@ namespace BerlinClock.Classes
 {
 	public class BerlinUhr : IBerlinUhr
 	{
+		private readonly IBerlinUhrPrintStrategy printStrategy;
+
 		public BerlinUhr(IBerlinUhrPrintStrategy printStrategy)
 		{
+			this.printStrategy = printStrategy;
 		}
 
 		public bool SecondDot => throw new NotImplementedException();
@@ -21,7 +24,7 @@ namespace BerlinClock.Classes
 
 		public string Print()
 		{
-			throw new NotImplementedException();
+			return this.printStrategy.Print(this);
 		}
 
 		public void SetTime(TimeSpan time)
