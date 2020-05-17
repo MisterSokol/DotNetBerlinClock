@@ -12,7 +12,7 @@ namespace BerlinClock.Classes
 			this.printStrategy = printStrategy;
 		}
 
-		public bool SecondDot => throw new NotImplementedException();
+		public bool SecondDot { get; private set; }
 
 		public IEnumerable<bool> FiveFullHoursRow => throw new NotImplementedException();
 
@@ -29,7 +29,12 @@ namespace BerlinClock.Classes
 
 		public void SetTime(TimeSpan time)
 		{
-			throw new NotImplementedException();
+			this.SetSecondDot(time);
+		}
+
+		private void SetSecondDot(TimeSpan time)
+		{
+			this.SecondDot = time.Seconds % 2 == 0;
 		}
 	}
 }
