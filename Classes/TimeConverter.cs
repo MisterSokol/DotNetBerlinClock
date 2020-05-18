@@ -1,10 +1,6 @@
 ﻿using BerlinClock.Classes;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Net.Configuration;
-using System.Text;
 
 namespace BerlinClock
 {

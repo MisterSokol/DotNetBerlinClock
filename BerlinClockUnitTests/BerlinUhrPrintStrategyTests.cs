@@ -1,5 +1,4 @@
-﻿using System;
-using BerlinClock.Classes;
+﻿using BerlinClock.Classes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 

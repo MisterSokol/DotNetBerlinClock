@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using BerlinClock.Classes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
